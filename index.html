@@ -1,201 +1,365 @@
 <!DOCTYPE html>
-<html lang="ml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kerala Wolfpack Rugby Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f7be03;
-            color: #333;
+        :root {
+            --bg-color: #050505;
+            --primary: #FBBF24;
+            --accent: #E11D48;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.05);
         }
 
-        /* Header - Yellow Background */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 { line-height: 1.2; }
+        
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #fff, #94A3B8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Glassmorphism Header */
         header {
-            background-color: #edbb00;
-            color: #004d98;
-            padding: 15px 20px;
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .logo { font-size: 18px; font-weight: bold; text-transform: uppercase; }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+        }
+        .logo span { color: var(--primary); margin-left: 5px; }
 
-        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-        nav ul li { margin-left: 15px; font-size: 13px; font-weight: bold; cursor: pointer; }
+        nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+        nav ul li a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        nav ul li a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover { color: var(--primary); }
+        nav ul li a:hover::after { width: 100%; }
+
+        .btn-schedule {
+            background: var(--primary);
+            color: #000 !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 800 !important;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-schedule::after { display: none; }
+        .btn-schedule:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+            background: #fff;
+        }
 
         /* Hero Section */
         .hero {
-            height: 50vh;
-            background:  linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-	       		url('ss.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: rgb(255, 208, 0);
-            text-align: center;
-            padding: 20px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.4), rgba(5,5,5,1)), 
+                        url('ss.jpg') no-repeat center center/cover;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px;
         }
 
-        .hero h1 { font-size: 2.2rem; margin: 0; text-transform: uppercase; }
-        .hero p { font-size: 1.1rem; max-width: 600px; }
-
-        /* About Section Styles */
-        .about-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
+        .hero-content {
+            max-width: 1000px;
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .section-box {
-            background: rgb(255, 255, 253);
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid #edbb00;
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            color: #fff;
+            line-height: 1;
+        }
+        .hero h1 span { color: var(--primary); }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
         }
 
-        h2 { color: #a10438e7; border-bottom: 2px solid #edbb00; display: inline-block; padding-bottom: 5px; }
-        h3 { color: #a50044; margin-top: 25px; }
-
-        .highlight-box {
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+        /* Container & Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 20px;
         }
 
-        ul { padding-left: 20px; }
-        ul li { margin-bottom: 10px; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
 
-        /* Match Schedule (Dark Background) */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .card:hover::before { opacity: 1; }
+
+        .card.large { grid-column: 1 / -1; }
+        .card.large h3 { font-size: 2rem; }
+
+        .card.accent {
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.05), rgba(5,5,5,0));
+            border: 1px solid rgba(225, 29, 72, 0.15);
+        }
+        .card.accent::before { background: var(--accent); opacity: 1; }
+        .card.accent:hover {
+            border-color: rgba(225, 29, 72, 0.3);
+            box-shadow: 0 20px 40px rgba(225, 29, 72, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            color: #fff;
+        }
+        .card h3 span { color: var(--primary); }
+        .card.accent h3 span { color: var(--accent); }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .card ul { list-style: none; color: var(--text-muted); }
+        .card ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+        }
+        .card ul li::before {
+            content: '→'; position: absolute; left: 0;
+            color: var(--primary); font-weight: bold;
+        }
+
+        /* Schedule Update */
         .schedule-section {
-            background-color: #1a1a1a;
-            padding: 40px 20px;
-            color: white;
-            text-align: center;
+            padding: 6rem 20px;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(251, 191, 36, 0.05) 0%, transparent 70%);
         }
 
         .match-card {
-            background-color: #2c2c2c;
-            border: 1px solid #444;
-            padding: 20px;
-            margin: 15px auto;
-            max-width: 500px;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            padding: 3rem; margin: 0 auto;
+            max-width: 600px; border-radius: 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: transform 0.4s ease;
         }
 
-        .match-date { color: #edbb00; font-weight: bold; }
-        .vs { color: #a50044; font-weight: bold; margin: 0 10px; }
+        .match-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
+        }
+
+        .match-date {
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .match-card p {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
 
         footer {
-            background: #111;
-            color: #777;
-            padding: 30px;
+            background: #000;
+            color: #555;
+            padding: 3rem 20px;
             text-align: center;
-            font-size: 13px;
+            font-size: 0.9rem;
+            border-top: 1px solid #111;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem; }
+            nav ul { gap: 1rem; }
+            .btn-schedule { padding: 0.5rem 1rem; font-size: 0.8rem; }
+            .card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">wolfpack </div>
+        <div class="logo">Wolfpack <span>Rugby</span></div>
         <nav>
             <ul>
-             
-                <li> <a href="s.html"
-		class="botton-link">SCHEDULE</a></li>
+                <li><a href="s.html" class="btn-schedule">Schedule</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>KERALA WOLFPACK RUGBY CLUB</h1>
-        <p>Rise Together As One Pack</p>
+        <div class="hero-content">
+            <h1>Kerala <span>Wolfpack</span></h1>
+            <p>Rise Together As One Pack</p>
+        </div>
     </section>
 
-    <div class="about-container">
+    <div class="container">
+        <h2>Who We Are</h2>
         
-        <div class="section-box">
-            <h2>Our Philosophy</h2>
-            
-	<p>We believe that rugby is more than a game—it is a way of life. Every player is trained to think, adapt, support one another, and rise together as one pack. Discipline, humility, and hard work form the foundation of everything we do.</p>
-        </div>
+        <div class="bento-grid">
+            <div class="card large">
+                <h3>Our <span>Philosophy</span></h3>
+                <p>We believe that rugby is more than a game—it is a way of life. Every player is trained to think, adapt, support one another, and rise together as one pack. Discipline, humility, and hard work form the foundation of everything we do.</p>
+            </div>
 
-        <div class="highlight-box">
-            <h3>Our Vision</h3>
-            <p>To create a strong rugby culture in Kerala that nurtures talent, promotes equality, and provides young athletes with opportunities to grow through sport, education, and life skills.</p>
-        </div>
+            <div class="card">
+                <h3>Our <span>Vision</span></h3>
+                <p>To create a strong rugby culture in Kerala that nurtures talent, promotes equality, and provides young athletes with opportunities to grow through sport, education, and life skills.</p>
+            </div>
 
-        <div class="section-box">
-            <h3>Our Mission</h3>
-            <ul>
-                <li>To identify, train, and develop rugby talent across Kerala</li>
-                <li>To provide structured pathways from grassroots to competitive rugby</li>
-                <li>To empower youth, especially from coastal communities, through sport-based education and discipline</li>
-                <li>To promote values such as teamwork, respect, leadership, and perseverance</li>
-            </ul>
-        </div>
+            <div class="card">
+                <h3>Our <span>Mission</span></h3>
+                <ul>
+                    <li>Identify, train, and develop rugby talent across Kerala</li>
+                    <li>Provide structured pathways from grassroots to competitive rugby</li>
+                    <li>Empower youth, especially from coastal communities</li>
+                    <li>Promote teamwork, respect, leadership, and perseverance</li>
+                </ul>
+            </div>
 
-        <div class="section-box">
-            <h3>What We Do</h3>
-            <ul>
-                <li>Grassroots rugby development programs</li>
-                <li>Competitive training for sevens and fifteens rugby</li>
-                <li>Physical conditioning, injury prevention, and performance-based training</li>
-                <li>Talent identification and long-term athlete development</li>
-                <li>Community engagement and outreach programs</li>
-            </ul>
-        </div>
+            <div class="card accent large">
+                <h3>Community & <span>Impact</span></h3>
+                <p>Kerala Wolfpack strongly believes in giving back to the community. Along with our broader mission across Kerala, we place special focus on promoting and guiding youth from the coastal regions of Malabar in Kerala.</p>
+                <p>We actively encourage and support young players from coastal and underrepresented backgrounds, helping them access better opportunities in sports, education, and personal growth. Rugby becomes a tool not just for competition, but for building character, confidence, and life direction.</p>
+            </div>
 
-        <div class="section-box" style="border-left-color: #a50044;">
-            <h3>Community & Impact</h3>
-            <p>Kerala Wolfpack strongly believes in giving back to the community. Along with our broader mission across Kerala, we place special focus on promoting and guiding youth from the coastal regions of Malabar in Kerala.</p>
-            <p>We actively encourage and support young players from coastal and underrepresented backgrounds, helping them access better opportunities in sports, education, and personal growth. Rugby becomes a tool not just for competition, but for building character, confidence, and life direction.</p>
-        </div>
+            <div class="card">
+                <h3>What We <span>Do</span></h3>
+                <ul>
+                    <li>Grassroots rugby development</li>
+                    <li>Competitive Sevens & Fifteens training</li>
+                    <li>Physical conditioning & performance</li>
+                    <li>Talent identification & development</li>
+                    <li>Community outreach programs</li>
+                </ul>
+            </div>
 
-        <div class="section-box">
-            <h3>About Us</h3>
-            <p>Kerala Wolfpack Rugby Club is built on strength, unity, and opportunity. Founded with a deep passion for the game and a strong sense of purpose, our club is committed to developing rugby across Kerala while shaping confident, disciplined, and resilient individuals on and off the field.</p>
+            <div class="card">
+                <h3>About <span>Us</span></h3>
+                <p>Built on strength, unity, and opportunity. Founded with a deep passion for the game and a strong sense of purpose, our club is committed to developing rugby across Kerala while shaping confident, disciplined, and resilient individuals on and off the field.</p>
+            </div>
         </div>
-
     </div>
 
     <section class="schedule-section">
-        <h2>UPCOMING UPDATES</h2>
+        <h2>Upcoming Updates</h2>
         <div class="match-card">
-            <div class="match-date">COMING SOON</div>
-            <div>Stay tuned for our next match and training schedules!</div>
+            <div class="match-date">Coming Soon</div>
+            <p>Stay tuned for our next match and training schedules!</p>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Kerala Wolfpack Rugby Club. Together we strive, we learn, and we rise as one pack.</p>
     </footer>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
   const firebaseConfig = {
     apiKey: "AIzaSyBk4NNc5TyxDggq4tGZ4BgRFwMnt-Sd0cM",
     authDomain: "wolfpackrugby-8b8cc.firebaseapp.com",
@@ -204,8 +368,6 @@
     messagingSenderId: "128318930314",
     appId: "1:128318930314:web:0383f0c6ecee7ece0a9c73"
   };
-
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 </script>
 
