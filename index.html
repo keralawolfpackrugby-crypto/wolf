@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,8 +34,12 @@
         }
 
         /* Typography */
-        h1, h2, h3 { line-height: 1.2; }
-        
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2;
+        }
+
         h2 {
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 900;
@@ -50,7 +55,8 @@
         /* Glassmorphism Header */
         header {
             position: fixed;
-            top: 0; width: 100%;
+            top: 0;
+            width: 100%;
             padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
@@ -71,9 +77,19 @@
             display: flex;
             align-items: center;
         }
-        .logo span { color: var(--primary); margin-left: 5px; }
 
-        nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+        .logo span {
+            color: var(--primary);
+            margin-left: 5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
         nav ul li a {
             color: var(--text-main);
             text-decoration: none;
@@ -84,13 +100,25 @@
             transition: color 0.3s ease;
             position: relative;
         }
+
         nav ul li a::after {
-            content: ''; position: absolute; width: 0; height: 2px;
-            bottom: -4px; left: 0; background-color: var(--primary);
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
             transition: width 0.3s ease;
         }
-        nav ul li a:hover { color: var(--primary); }
-        nav ul li a:hover::after { width: 100%; }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
 
         .btn-schedule {
             background: var(--primary);
@@ -101,7 +129,11 @@
             box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
             transition: all 0.3s ease;
         }
-        .btn-schedule::after { display: none; }
+
+        .btn-schedule::after {
+            display: none;
+        }
+
         .btn-schedule:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
@@ -111,11 +143,14 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(to bottom, rgba(5,5,5,0.4), rgba(5,5,5,1)), 
-                        url('ss.jpg') no-repeat center center/cover;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            text-align: center; padding: 0 20px;
+            background: linear-gradient(to bottom, rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 1)),
+                url('ss.jpeg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
         }
 
         .hero-content {
@@ -132,7 +167,11 @@
             color: #fff;
             line-height: 1;
         }
-        .hero h1 span { color: var(--primary); }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
         .hero p {
             font-size: clamp(1rem, 2vw, 1.5rem);
             color: var(--text-muted);
@@ -167,27 +206,46 @@
         }
 
         .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--accent));
-            opacity: 0; transition: opacity 0.4s ease;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .card:hover {
             transform: translateY(-8px);
             background: rgba(255, 255, 255, 0.04);
             border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        .card:hover::before { opacity: 1; }
 
-        .card.large { grid-column: 1 / -1; }
-        .card.large h3 { font-size: 2rem; }
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card.large {
+            grid-column: 1 / -1;
+        }
+
+        .card.large h3 {
+            font-size: 2rem;
+        }
 
         .card.accent {
-            background: linear-gradient(135deg, rgba(225, 29, 72, 0.05), rgba(5,5,5,0));
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.05), rgba(5, 5, 5, 0));
             border: 1px solid rgba(225, 29, 72, 0.15);
         }
-        .card.accent::before { background: var(--accent); opacity: 1; }
+
+        .card.accent::before {
+            background: var(--accent);
+            opacity: 1;
+        }
+
         .card.accent:hover {
             border-color: rgba(225, 29, 72, 0.3);
             box-shadow: 0 20px 40px rgba(225, 29, 72, 0.1);
@@ -199,8 +257,14 @@
             margin-bottom: 1.2rem;
             color: #fff;
         }
-        .card h3 span { color: var(--primary); }
-        .card.accent h3 span { color: var(--accent); }
+
+        .card h3 span {
+            color: var(--primary);
+        }
+
+        .card.accent h3 span {
+            color: var(--accent);
+        }
 
         .card p {
             color: var(--text-muted);
@@ -208,16 +272,24 @@
             font-size: 1.05rem;
         }
 
-        .card ul { list-style: none; color: var(--text-muted); }
+        .card ul {
+            list-style: none;
+            color: var(--text-muted);
+        }
+
         .card ul li {
             position: relative;
             padding-left: 1.5rem;
             margin-bottom: 0.8rem;
             font-size: 1.05rem;
         }
+
         .card ul li::before {
-            content: '→'; position: absolute; left: 0;
-            color: var(--primary); font-weight: bold;
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
         }
 
         /* Schedule Update */
@@ -228,13 +300,15 @@
         }
 
         .match-card {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(251, 191, 36, 0.2);
-            padding: 3rem; margin: 0 auto;
-            max-width: 600px; border-radius: 24px;
+            padding: 3rem;
+            margin: 0 auto;
+            max-width: 600px;
+            border-radius: 24px;
             text-align: center;
             backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             transition: transform 0.4s ease;
         }
 
@@ -268,18 +342,40 @@
         }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
-            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+                filter: blur(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
         }
 
         @media (max-width: 768px) {
-            header { padding: 1rem; }
-            nav ul { gap: 1rem; }
-            .btn-schedule { padding: 0.5rem 1rem; font-size: 0.8rem; }
-            .card { padding: 1.5rem; }
+            header {
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .btn-schedule {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -300,16 +396,19 @@
 
     <div class="container">
         <h2>Who We Are</h2>
-        
+
         <div class="bento-grid">
             <div class="card large">
                 <h3>Our <span>Philosophy</span></h3>
-                <p>We believe that rugby is more than a game—it is a way of life. Every player is trained to think, adapt, support one another, and rise together as one pack. Discipline, humility, and hard work form the foundation of everything we do.</p>
+                <p>We believe that rugby is more than a game—it is a way of life. Every player is trained to think,
+                    adapt, support one another, and rise together as one pack. Discipline, humility, and hard work form
+                    the foundation of everything we do.</p>
             </div>
 
             <div class="card">
                 <h3>Our <span>Vision</span></h3>
-                <p>To create a strong rugby culture in Kerala that nurtures talent, promotes equality, and provides young athletes with opportunities to grow through sport, education, and life skills.</p>
+                <p>To create a strong rugby culture in Kerala that nurtures talent, promotes equality, and provides
+                    young athletes with opportunities to grow through sport, education, and life skills.</p>
             </div>
 
             <div class="card">
@@ -324,8 +423,12 @@
 
             <div class="card accent large">
                 <h3>Community & <span>Impact</span></h3>
-                <p>Kerala Wolfpack strongly believes in giving back to the community. Along with our broader mission across Kerala, we place special focus on promoting and guiding youth from the coastal regions of Malabar in Kerala.</p>
-                <p>We actively encourage and support young players from coastal and underrepresented backgrounds, helping them access better opportunities in sports, education, and personal growth. Rugby becomes a tool not just for competition, but for building character, confidence, and life direction.</p>
+                <p>Kerala Wolfpack strongly believes in giving back to the community. Along with our broader mission
+                    across Kerala, we place special focus on promoting and guiding youth from the coastal regions of
+                    Malabar in Kerala.</p>
+                <p>We actively encourage and support young players from coastal and underrepresented backgrounds,
+                    helping them access better opportunities in sports, education, and personal growth. Rugby becomes a
+                    tool not just for competition, but for building character, confidence, and life direction.</p>
             </div>
 
             <div class="card">
@@ -341,7 +444,9 @@
 
             <div class="card">
                 <h3>About <span>Us</span></h3>
-                <p>Built on strength, unity, and opportunity. Founded with a deep passion for the game and a strong sense of purpose, our club is committed to developing rugby across Kerala while shaping confident, disciplined, and resilient individuals on and off the field.</p>
+                <p>Built on strength, unity, and opportunity. Founded with a deep passion for the game and a strong
+                    sense of purpose, our club is committed to developing rugby across Kerala while shaping confident,
+                    disciplined, and resilient individuals on and off the field.</p>
             </div>
         </div>
     </div>
@@ -358,18 +463,19 @@
         <p>&copy; 2024 Kerala Wolfpack Rugby Club. Together we strive, we learn, and we rise as one pack.</p>
     </footer>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-  const firebaseConfig = {
-    apiKey: "AIzaSyBk4NNc5TyxDggq4tGZ4BgRFwMnt-Sd0cM",
-    authDomain: "wolfpackrugby-8b8cc.firebaseapp.com",
-    projectId: "wolfpackrugby-8b8cc",
-    storageBucket: "wolfpackrugby-8b8cc.firebasestorage.app",
-    messagingSenderId: "128318930314",
-    appId: "1:128318930314:web:0383f0c6ecee7ece0a9c73"
-  };
-  const app = initializeApp(firebaseConfig);
-</script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyBk4NNc5TyxDggq4tGZ4BgRFwMnt-Sd0cM",
+            authDomain: "wolfpackrugby-8b8cc.firebaseapp.com",
+            projectId: "wolfpackrugby-8b8cc",
+            storageBucket: "wolfpackrugby-8b8cc.firebasestorage.app",
+            messagingSenderId: "128318930314",
+            appId: "1:128318930314:web:0383f0c6ecee7ece0a9c73"
+        };
+        const app = initializeApp(firebaseConfig);
+    </script>
 
 </body>
+
 </html>
