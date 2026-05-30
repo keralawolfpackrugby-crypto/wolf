@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Kerala Wolfpack Rugby Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #050505;
+      --primary: #FBBF24;
+      --primary-glow: rgba(251, 191, 36, 0.4);
+      --accent: #E11D48;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --card-bg: rgba(20, 20, 22, 0.6);
+      --card-border: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.98)),
+        url('ss.jpeg') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-main);
+      padding: 100px 20px 60px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle Animated Glow behind the card */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      opacity: 0.4;
+      animation: pulseGlow 8s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.2;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.5;
+      }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border-bottom: none;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    .logo span {
+      color: var(--primary);
+      margin-left: 5px;
+    }
+
+    .logo img {
+      height: 45px;
+      width: 45px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Premium Contact Container */
+    .box {
+      max-width: 650px;
+      width: 100%;
+      z-index: 1;
+      text-align: center;
+      animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .box h2 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #ffffff, #a1a1aa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    .box h2 span {
+      background: linear-gradient(135deg, var(--primary), #d97706);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .box p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+    }
+
+    /* Contact Info Grid */
+    .contact-info {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(251, 191, 36, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-item:hover::before {
+      opacity: 1;
+    }
+
+    .contact-item strong {
+      color: var(--primary);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .contact-item span,
+    .contact-item a {
+      color: var(--text-main);
+      font-size: 1.25rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary);
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .social-btn:hover::after {
+      left: 100%;
+    }
+
+    .social-btn:hover {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+    }
+
+    @media (min-width: 600px) {
+      .contact-info {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-info .contact-item:first-child {
+        grid-column: 1 / -1;
+        /* Email spans full width */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.jpeg" alt="Wolfpack Logo">
+      Wolfpack <span>Rugby</span>
+    </div>
+  </header>
+
+  <div class="box">
+    <h2>Contact <span>Us</span></h2>
+    <p class="subtitle">Get in touch with the pack</p>
+
+    <div class="contact-info">
+      <div class="contact-item">
+        <strong>Email</strong>
+        <a href="mailto:keralawolfpackrugby@gmail.com">keralawolfpackrugby@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <strong>Phone</strong>
+        <span>None</span>
+      </div>
+      <div class="contact-item">
+        <strong>Location</strong>
+        <span>Kerala, India</span>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/kerala_wolfpack?igsh=MTVmYngzM3FmcnFlZg==" target="_blank"
+        class="social-btn">Instagram</a>
+      <a href="#" class="social-btn">Facebook</a>
+    </div>
+  </div>
+</body>
+
+</html>

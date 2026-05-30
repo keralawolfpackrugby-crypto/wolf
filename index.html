@@ -84,61 +84,103 @@
             margin-left: 5px;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            align-items: center;
+        .logo img {
+            height: 45px;
+            width: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 12px;
         }
 
-        nav ul li a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
+        .menu-container {
             position: relative;
         }
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
+        .hamburger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-main);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .hamburger:hover span {
             background-color: var(--primary);
-            transition: width 0.3s ease;
         }
 
-        nav ul li a:hover {
-            color: var(--primary);
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background-color: var(--primary);
         }
 
-        nav ul li a:hover::after {
-            width: 100%;
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
         }
 
-        .btn-schedule {
-            background: var(--primary);
-            color: #000 !important;
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 800 !important;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background-color: var(--primary);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 150%;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1rem 0;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdown-menu ul li a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
         }
 
-        .btn-schedule::after {
-            display: none;
-        }
-
-        .btn-schedule:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
-            background: #fff;
+        .dropdown-menu ul li a:hover {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--primary);
+            padding-left: 2rem;
         }
 
         /* Hero Section */
@@ -361,14 +403,7 @@
                 padding: 1rem;
             }
 
-            nav ul {
-                gap: 1rem;
-            }
 
-            .btn-schedule {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
 
             .card {
                 padding: 1.5rem;
@@ -380,12 +415,24 @@
 <body>
 
     <header>
-        <div class="logo">Wolfpack <span>Rugby</span></div>
-        <nav>
-            <ul>
-                <li><a href="s.html" class="btn-schedule">Schedule</a></li>
-            </ul>
-        </nav>
+        <div class="logo">
+            <img src="logo.jpeg" alt="Wolfpack Logo">
+            Wolfpack <span>Rugby</span>
+        </div>
+        <div class="menu-container">
+            <button class="hamburger" id="hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="dropdown-menu" id="dropdown-menu">
+                <ul>
+                    <li><a href="s.html">Schedule</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section class="hero">
@@ -477,6 +524,22 @@
         const app = initializeApp(firebaseConfig);
     </script>
 
+    <script>
+        document.getElementById('hamburger-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            document.getElementById('dropdown-menu').classList.toggle('active');
+        });
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('dropdown-menu');
+            const hamburger = document.getElementById('hamburger-btn');
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 
 </html>
